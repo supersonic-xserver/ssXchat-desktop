@@ -116,3 +116,34 @@ inline const QRegularExpression &cRussianLetters() {
 	static QRegularExpression regexp(QString::fromUtf8("[а-яА-ЯёЁ]"));
 	return regexp;
 }
+
+// ssXchat Privacy Hardening Configuration
+// These settings disable all telemetry, crash reporting, and auto-update functionality
+
+#ifndef TDESKTOP_DISABLE_CRASH_REPORTS
+#define TDESKTOP_DISABLE_CRASH_REPORTS
+#endif // TDESKTOP_DISABLE_CRASH_REPORTS
+
+#ifndef TDESKTOP_DISABLE_UPDATE_CHECKER
+#define TDESKTOP_DISABLE_UPDATE_CHECKER
+#endif // TDESKTOP_DISABLE_UPDATE_CHECKER
+
+// Disable all plaintext logging to disk (route to /dev/null)
+#ifndef TDESKTOP_DISABLE_FILE_LOGGING
+#define TDESKTOP_DISABLE_FILE_LOGGING
+#endif // TDESKTOP_DISABLE_FILE_LOGGING
+
+// Disable typing indicators and presence broadcasts
+#ifndef TDESKTOP_DISABLE_TYPING_INDICATORS
+#define TDESKTOP_DISABLE_TYPING_INDICATORS
+#endif // TDESKTOP_DISABLE_TYPING_INDICATORS
+
+// Disable link preview pre-fetching
+#ifndef TDESKTOP_DISABLE_LINK_PREVIEW_PREFETCH
+#define TDESKTOP_DISABLE_LINK_PREVIEW_PREFETCH
+#endif // TDESKTOP_DISABLE_LINK_PREVIEW_PREFETCH
+
+// Use generic static values for device fingerprint
+#ifndef TDESKTOP_GENERIC_DEVICE_INFO
+#define TDESKTOP_GENERIC_DEVICE_INFO
+#endif // TDESKTOP_GENERIC_DEVICE_INFO

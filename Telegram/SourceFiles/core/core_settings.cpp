@@ -6,6 +6,7 @@ For license and copyright information please follow this link:
 https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 */
 #include "core/core_settings.h"
+#include "core/coreprivacy.h"
 
 #include "base/platform/base_platform_info.h"
 #include "calls/group/calls_group_common.h"
@@ -1327,7 +1328,12 @@ void Settings::setThirdColumnWidth(int width) {
 
 QString Settings::deviceModel() const {
 	const auto custom = customDeviceModel();
+#ifdef TDESKTOP_GENERIC_DEVICE_INFO
+	// ssXchat: Always use generic device model to prevent fingerprinting
+	return u"PC"_q;
+#else
 	return custom.isEmpty() ? Platform::DeviceModelPretty() : custom;
+#endif // TDESKTOP_GENERIC_DEVICE_INFO
 }
 
 rpl::producer<QString> Settings::deviceModelChanges() const {

@@ -14,6 +14,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "base/unixtime.h"
 #include "data/data_peer_values.h"
 #include "apiwrap.h"
+#include "config.h"
 
 namespace Api {
 namespace {
@@ -109,6 +110,10 @@ bool SendProgressManager::updated(const Key &key, bool doing) {
 }
 
 void SendProgressManager::send(const Key &key, int progress) {
+#ifdef TDESKTOP_DISABLE_TYPING_INDICATORS
+	// ssXchat: Disable typing indicators to protect privacy
+	return;
+#else
 	if (skipRequest(key)) {
 		return;
 	}
@@ -149,6 +154,7 @@ void SendProgressManager::send(const Key &key, int progress) {
 		_stopTypingHistory = key.history;
 		_stopTypingTimer.callOnce(kCancelTypingActionTimeout);
 	}
+#endif // TDESKTOP_DISABLE_TYPING_INDICATORS
 }
 
 bool SendProgressManager::skipRequest(const Key &key) const {

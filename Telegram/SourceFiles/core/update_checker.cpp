@@ -7,6 +7,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 */
 #include "core/update_checker.h"
 
+#include "config.h"
 #include "platform/platform_specific.h"
 #include "base/platform/base_platform_info.h"
 #include "base/platform/base_platform_file_utilities.h"
@@ -59,11 +60,15 @@ namespace {
 constexpr auto kUpdaterTimeout = 10 * crl::time(1000);
 constexpr auto kMaxResponseSize = 1024 * 1024;
 
+#ifdef TDESKTOP_DISABLE_UPDATE_CHECKER
+bool UpdaterIsDisabled = true;
+#else // TDESKTOP_DISABLE_UPDATE_CHECKER
 #ifdef TDESKTOP_DISABLE_AUTOUPDATE
 bool UpdaterIsDisabled = true;
 #else // TDESKTOP_DISABLE_AUTOUPDATE
 bool UpdaterIsDisabled = false;
 #endif // TDESKTOP_DISABLE_AUTOUPDATE
+#endif // TDESKTOP_DISABLE_UPDATE_CHECKER
 
 std::weak_ptr<Updater> UpdaterInstance;
 

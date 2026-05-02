@@ -109,6 +109,10 @@ public:
 	}
 
 	void write(LogDataType type, const QString &msg) {
+#ifdef TDESKTOP_DISABLE_FILE_LOGGING
+		// ssXchat: All file logging disabled - route to /dev/null
+		return;
+#else
 		QMutexLocker lock(_logsMutex(type));
 		WritingEntryScope scope;
 
@@ -121,6 +125,7 @@ public:
 		}
 		file->write(msg.toUtf8());
 		file->flush();
+#endif // TDESKTOP_DISABLE_FILE_LOGGING
 	}
 
 private:
