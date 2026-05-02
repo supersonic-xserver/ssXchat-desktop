@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "updater.h"
 
@@ -261,7 +261,7 @@ bool update() {
 			if (!copyResult) {
 				writeLog(L"Error: failed to copy, asking to retry..");
 				WCHAR errMsg[2048];
-				wsprintf(errMsg, L"Failed to update Telegram :(\n%s is not accessible.", tofname.c_str());
+				wsprintf(errMsg, L"Failed to update ssXchat Desktop :(\n%s is not accessible.", tofname.c_str());
 				if (MessageBox(0, errMsg, L"Update error!", MB_ICONERROR | MB_RETRYCANCEL) != IDRETRY) {
 					delFolder();
 					return false;

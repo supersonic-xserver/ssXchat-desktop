@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "window/window_main_menu.h"
 
@@ -384,8 +384,8 @@ MainMenu::MainMenu(
 	parentResized();
 
 	_telegram->setMarkedText(tr::link(
-		u"Telegram Desktop"_q,
-		u"https://desktop.telegram.org"_q));
+		u"ssXchat Desktop"_q,
+		u"https://github.com/supersonic-xserver/ssXchat-desktop"_q));
 	_telegram->setLinksTrusted();
 	_version->setMarkedText(
 		tr::link(

@@ -560,6 +560,7 @@ PRIVATE
     core/ui_integration.cpp
     core/ui_integration.h
     core/update_checker.cpp
+    core/coreprivacy.h
     core/update_checker.h
     core/utils.cpp
     core/utils.h

@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "boxes/about_box.h"
 
@@ -45,11 +45,11 @@ rpl::producer<TextWithEntities> Text2() {
 		lt_gpl_link,
 		rpl::single(tr::link(
 			"GNU GPL",
-			"https://github.com/telegramdesktop/tdesktop/blob/master/LICENSE")),
+			"https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LICENSE")),
 		lt_github_link,
 		rpl::single(tr::link(
 			"GitHub",
-			"https://github.com/telegramdesktop/tdesktop")),
+			"https://github.com/supersonic-xserver/ssXchat-desktop")),
 		tr::marked);
 }
 
@@ -63,7 +63,7 @@ rpl::producer<TextWithEntities> Text3() {
 } // namespace
 
 void AboutBox(not_null<Ui::GenericBox*> box) {
-	box->setTitle(u"Telegram Desktop"_q);
+	box->setTitle(u"ssXchat Desktop"_q);
 
 	auto layout = box->verticalLayout();
 
@@ -132,7 +132,7 @@ void AboutBox(not_null<Ui::GenericBox*> box) {
 }
 
 QString telegramFaqLink() {
-	const auto result = u"https://telegram.org/faq"_q;
+	const auto result = u"https://github.com/supersonic-xserver/ssXchat-desktop?tab=readme-ov-file"_q;
 	const auto langpacked = [&](const char *language) {
 		return result + '/' + language;
 	};
