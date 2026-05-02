@@ -59,7 +59,7 @@ endif()
 
 # ssXchat Privacy Hardening Options
 option(DESKTOP_APP_DISABLE_WAYLAND "Force X11 mode, disable Wayland support for privacy and latency." ON)
-option(DESKTOP_APP_SOVEREIGN_BUILD "Sovereign build mode - enables all privacy hardening flags." OFF)
+option(DESKTOP_APP_SOVEREIGN_BUILD "Sovereign build mode - enables all privacy hardening flags." ON)
 option(DESKTOP_APP_GENERIC_DEVICE_INFO "Use generic device model/version for privacy." ON)
 
 if(DESKTOP_APP_SOVEREIGN_BUILD)
