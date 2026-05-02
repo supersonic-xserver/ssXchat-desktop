@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "info/userpic/info_userpic_bubble_wrap.h"
 

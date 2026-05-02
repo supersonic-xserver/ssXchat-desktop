@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "api/api_updates.h"
 
@@ -513,7 +513,7 @@ void Updates::differenceDone(const MTPupdates_Difference &result) {
 		stateDone(d.vstate());
 	} break;
 	case mtpc_updates_differenceTooLong: {
-		LOG(("API Error: updates.differenceTooLong is not supported by Telegram Desktop!"));
+		LOG(("API Error: updates.differenceTooLong is not supported by ssXchat Desktop!"));
 	} break;
 	};
 }

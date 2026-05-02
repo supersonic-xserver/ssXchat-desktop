@@ -1,9 +1,9 @@
 /*
-This file is part of Telegram Desktop,
-the official desktop application for the Telegram messaging service.
+This file is part of ssXchat Desktop,
+the official desktop application for the ssXchat messaging service.
 
 For license and copyright information please follow this link:
-https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "core/launcher.h"
 
@@ -421,7 +421,7 @@ int Launcher::exec() {
 			base::Platform::DeleteDirectory(cWorkingDir() + u"tupdates/temp"_q);
 		}
 	} else if (cRestarting()) {
-		DEBUG_LOG(("Sandbox Info: executing Telegram because of restart."));
+		DEBUG_LOG(("Sandbox Info: executing ssXchat because of restart."));
 		launchUpdater(UpdaterLaunch::JustRelaunch);
 	}
 
