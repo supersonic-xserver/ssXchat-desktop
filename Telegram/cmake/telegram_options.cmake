@@ -56,3 +56,50 @@ option(DESKTOP_APP_DISABLE_SWIFT6 "Disable local on-device translation (build wi
 if (DESKTOP_APP_DISABLE_SWIFT6)
     target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_SWIFT6)
 endif()
+
+# ssXchat Privacy Hardening Options
+option(DESKTOP_APP_DISABLE_WAYLAND "Force X11 mode, disable Wayland support for privacy and latency." ON)
+option(DESKTOP_APP_SOVEREIGN_BUILD "Sovereign build mode - enables all privacy hardening flags." OFF)
+option(DESKTOP_APP_GENERIC_DEVICE_INFO "Use generic device model/version for privacy." ON)
+
+if(DESKTOP_APP_SOVEREIGN_BUILD)
+    set(DESKTOP_APP_DISABLE_WAYLAND ON)
+    set(DESKTOP_APP_DISABLE_AUTOUPDATE ON)
+    set(DESKTOP_APP_DISABLE_CRASH_REPORTS ON)
+    set(DESKTOP_APP_GENERIC_DEVICE_INFO ON)
+    message(STATUS "ssXchat: Building in sovereign/privacy-hardened mode")
+endif()
+
+if (DESKTOP_APP_GENERIC_DEVICE_INFO)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_GENERIC_DEVICE_INFO)
+endif()
+
+if (DESKTOP_APP_DISABLE_WAYLAND)
+    # ssXchat: Explicitly disable Wayland to prevent X11/XAA performance issues
+    # and potential fingerprinting through Wayland compositor leaks
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_WAYLAND)
+    
+    # Add build-time check for wayland libraries
+    if(UNIX AND NOT APPLE)
+        find_package(PkgConfig QUIET)
+        if(PkgConfig_FOUND)
+            pkg_check_modules(WAYLAND wayland-client wayland-cursor wayland-egl QUIET)
+            if(WAYLAND_FOUND)
+                message(FATAL_ERROR "ssXchat build aborted: Wayland libraries detected! "
+                    "ssXchat requires X11-only builds. Please unset WAYLAND_DISPLAY "
+                    "or remove libwayland packages before building.")
+            endif()
+        endif()
+    endif()
+endif()
+
+# ssXchat: Disable telemetry-related features
+if (NOT DESKTOP_APP_SOVEREIGN_BUILD)
+    # Only apply if not already set via sovereign build
+    if (DESKTOP_APP_DISABLE_AUTOUPDATE)
+        target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_AUTOUPDATE)
+    endif()
+    if (DESKTOP_APP_DISABLE_CRASH_REPORTS)
+        target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_CRASH_REPORTS)
+    endif()
+endif()
