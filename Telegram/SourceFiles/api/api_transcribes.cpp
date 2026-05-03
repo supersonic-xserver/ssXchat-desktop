@@ -7,6 +7,11 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "api/api_transcribes.h"
 
+#ifdef TDESKTOP_DISABLE_VOICE_TRANSCRIPTION
+// ssXchat: Voice transcription disabled for privacy
+namespace { struct Transcribes_disabled {}; }
+#else
+
 #include "apiwrap.h"
 #include "api/api_text_entities.h"
 #include "data/data_channel.h"
@@ -307,3 +312,5 @@ void Transcribes::checkSummaryToTranslate(FullMsgId id) {
 }
 
 } // namespace Api
+
+#endif // TDESKTOP_DISABLE_VOICE_TRANSCRIPTION

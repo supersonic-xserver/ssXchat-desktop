@@ -7,6 +7,10 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "chat_helpers/stickers_list_footer.h"
 
+#ifdef TDESKTOP_DISABLE_GIF_SEARCH
+// ssXchat: GIF search disabled to prevent IP leaks to Giphy/Tenor
+#else
+
 #include "chat_helpers/emoji_keywords.h"
 #include "chat_helpers/stickers_emoji_pack.h"
 #include "chat_helpers/stickers_lottie.h"
@@ -1571,3 +1575,5 @@ bool LocalStickersManager::clearInstalledLocally() {
 }
 
 } // namespace ChatHelpers
+
+#endif // TDESKTOP_DISABLE_GIF_SEARCH

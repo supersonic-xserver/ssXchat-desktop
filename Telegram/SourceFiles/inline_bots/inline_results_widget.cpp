@@ -7,6 +7,11 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "inline_bots/inline_results_widget.h"
 
+#ifdef TDESKTOP_DISABLE_INLINE_BOTS
+// ssXchat: Inline bots disabled for privacy
+namespace { struct InlineBots_disabled {}; }
+#else
+
 #include "data/data_user.h"
 #include "data/data_session.h"
 #include "inline_bots/inline_bot_result.h"
@@ -530,3 +535,5 @@ void Widget::recountContentMaxHeight() {
 
 } // namespace Layout
 } // namespace InlineBots
+
+#endif // TDESKTOP_DISABLE_INLINE_BOTS

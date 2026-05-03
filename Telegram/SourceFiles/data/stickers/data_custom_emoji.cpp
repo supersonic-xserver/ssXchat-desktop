@@ -7,6 +7,11 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "data/stickers/data_custom_emoji.h"
 
+#ifdef TDESKTOP_DISABLE_CUSTOM_EMOJI
+// ssXchat: Custom emoji disabled for privacy
+namespace { struct CustomEmoji_disabled {}; }
+#else
+
 #include "boxes/peers/edit_forum_topic_box.h" // MakeTopicIconEmoji.
 #include "chat_helpers/stickers_emoji_pack.h"
 #include "main/main_app_config.h"
@@ -1114,3 +1119,5 @@ QString EmojiStatusCustomId(const EmojiStatusId &id) {
 }
 
 } // namespace Data
+
+#endif // TDESKTOP_DISABLE_CUSTOM_EMOJI

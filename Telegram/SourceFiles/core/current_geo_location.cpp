@@ -7,6 +7,11 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "core/current_geo_location.h"
 
+#ifdef TDESKTOP_DISABLE_MAP_PREVIEW
+// ssXchat: Map preview disabled to prevent third-party API leaks
+namespace { struct MapPreview_disabled {}; }
+#else
+
 #include "base/platform/base_platform_info.h"
 #include "base/invoke_queued.h"
 #include "base/timer.h"
@@ -241,3 +246,5 @@ bool AreTheSame(const GeoLocation &a, const GeoLocation &b) {
 }
 
 } // namespace Core
+
+#endif // TDESKTOP_DISABLE_MAP_PREVIEW

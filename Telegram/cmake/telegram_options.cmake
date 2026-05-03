@@ -62,16 +62,48 @@ option(DESKTOP_APP_DISABLE_WAYLAND "Force X11 mode, disable Wayland support for 
 option(DESKTOP_APP_SOVEREIGN_BUILD "Sovereign build mode - enables all privacy hardening flags." ON)
 option(DESKTOP_APP_GENERIC_DEVICE_INFO "Use generic device model/version for privacy." ON)
 
+# ssXchat AI/ML Feature Removal Options
+option(DESKTOP_APP_DISABLE_SPELLCHECK "Disable spellcheck to prevent OS-level keystroke leaks." ON)
+option(DESKTOP_APP_DISABLE_VOICE_TRANSCRIPTION "Disable voice-to-text AI transcription." ON)
+option(DESKTOP_APP_DISABLE_GIF_SEARCH "Disable GIF search to prevent IP leaks to Giphy/Tenor." ON)
+option(DESKTOP_APP_DISABLE_MAP_PREVIEW "Disable automatic map preview fetching." ON)
+option(DESKTOP_APP_DISABLE_THUMBNAIL_CACHE "Disable thumbnail caching on disk." ON)
+
 if(DESKTOP_APP_SOVEREIGN_BUILD)
     set(DESKTOP_APP_DISABLE_WAYLAND ON)
     set(DESKTOP_APP_DISABLE_AUTOUPDATE ON)
     set(DESKTOP_APP_DISABLE_CRASH_REPORTS ON)
     set(DESKTOP_APP_GENERIC_DEVICE_INFO ON)
+    set(DESKTOP_APP_DISABLE_SPELLCHECK ON)
+    set(DESKTOP_APP_DISABLE_VOICE_TRANSCRIPTION ON)
+    set(DESKTOP_APP_DISABLE_GIF_SEARCH ON)
+    set(DESKTOP_APP_DISABLE_MAP_PREVIEW ON)
+    set(DESKTOP_APP_DISABLE_THUMBNAIL_CACHE ON)
     message(STATUS "ssXchat: Building in sovereign/privacy-hardened mode")
 endif()
 
 if (DESKTOP_APP_GENERIC_DEVICE_INFO)
     target_compile_definitions(Telegram PRIVATE TDESKTOP_GENERIC_DEVICE_INFO)
+endif()
+
+if (DESKTOP_APP_DISABLE_SPELLCHECK)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_SPELLCHECK)
+endif()
+
+if (DESKTOP_APP_DISABLE_VOICE_TRANSCRIPTION)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_VOICE_TRANSCRIPTION)
+endif()
+
+if (DESKTOP_APP_DISABLE_GIF_SEARCH)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_GIF_SEARCH)
+endif()
+
+if (DESKTOP_APP_DISABLE_MAP_PREVIEW)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_MAP_PREVIEW)
+endif()
+
+if (DESKTOP_APP_DISABLE_THUMBNAIL_CACHE)
+    target_compile_definitions(Telegram PRIVATE TDESKTOP_DISABLE_THUMBNAIL_CACHE)
 endif()
 
 if (DESKTOP_APP_DISABLE_WAYLAND)

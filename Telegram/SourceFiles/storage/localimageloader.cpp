@@ -7,6 +7,11 @@ https://github.com/supersonic-xserver/ssXchat-desktop/blob/master/LEGAL
 */
 #include "storage/localimageloader.h"
 
+#ifdef TDESKTOP_DISABLE_THUMBNAIL_CACHE
+// ssXchat: Thumbnail cache disabled for privacy
+namespace { struct ThumbnailCache_disabled {}; }
+#else
+
 #include "api/api_text_entities.h"
 #include "api/api_sending.h"
 #include "data/data_document.h"
@@ -1087,3 +1092,5 @@ void FileLoadTask::removeFromAlbum() {
 
 	_album->items.erase(it);
 }
+
+#endif // TDESKTOP_DISABLE_THUMBNAIL_CACHE
