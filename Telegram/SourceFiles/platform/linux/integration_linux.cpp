@@ -71,7 +71,7 @@ public:
 
 	void add_platform_data_(
 			GLib::VariantBuilder_Ref builder) noexcept override {
-		if (0) {
+		if (false) {
 			const auto token = qgetenv("XDG_ACTIVATION_TOKEN");
 			if (!token.isEmpty()) {
 				builder.add_value(
