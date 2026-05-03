@@ -38,7 +38,7 @@ public:
 	Application();
 
 	void before_emit_(GLib::Variant platformData) noexcept override {
-		if (Platform::IsWayland()) {
+		if (false) {
 			static const auto keys = {
 				"activation-token",
 				"desktop-startup-id",
@@ -71,7 +71,7 @@ public:
 
 	void add_platform_data_(
 			GLib::VariantBuilder_Ref builder) noexcept override {
-		if (Platform::IsWayland()) {
+		if (0) {
 			const auto token = qgetenv("XDG_ACTIVATION_TOKEN");
 			if (!token.isEmpty()) {
 				builder.add_value(
