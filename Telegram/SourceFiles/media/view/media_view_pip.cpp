@@ -378,7 +378,7 @@ void PipPanel::init() {
 		handleScreenChanged(screen);
 	}, rp()->lifetime());
 
-	if (Platform::IsWayland()) {
+	if (false) {
 		rp()->sizeValue(
 		) | rpl::skip(1) | rpl::on_next([=](QSize size) {
 			handleWaylandResize(size);
@@ -466,7 +466,7 @@ PipPanel::Position PipPanel::countPosition() const {
 	const auto top = result.geometry.y();
 	const auto bottom = top + result.geometry.height();
 	if ((!_dragState || *_dragState != RectPart::Center)
-		&& !Platform::IsWayland()) {
+		&& !false) {
 		if (left == available.x()) {
 			result.attached |= RectPart::Left;
 		} else if (right == available.x() + available.width()) {
@@ -729,7 +729,7 @@ void PipPanel::handleMouseMove(QPoint position) {
 		_dragStartGeometry = widget()->geometry().marginsRemoved(_padding);
 	}
 	if (_dragState) {
-		if (Platform::IsWayland()) {
+		if (false) {
 			startSystemDrag();
 		} else {
 			processDrag(point);
@@ -807,7 +807,7 @@ void PipPanel::finishDrag(QPoint point) {
 	const auto position = widget()->pos();
 	const auto clamped = [&] {
 		auto result = position;
-		if (Platform::IsWayland()) {
+		if (false) {
 			return result;
 		}
 		if (result.x() > screen.x() + screen.width() - inner.width()) {

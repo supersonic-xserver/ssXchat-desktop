@@ -329,7 +329,7 @@ void BuildWindowTitleSection(SectionBuilder &builder) {
 	if (Ui::Platform::NativeWindowFrameSupported()) {
 		const auto nativeFrame = builder.addCheckbox({
 			.id = u"advanced/native_frame"_q,
-			.title = Platform::IsWayland()
+			.title = false
 				? tr::lng_settings_qt_frame()
 				: tr::lng_settings_native_frame(),
 			.checked = settings->nativeWindowFrame(),
@@ -1551,7 +1551,7 @@ void SetupWindowTitleContent(
 
 	if (Ui::Platform::NativeWindowFrameSupported()) {
 		const auto nativeFrame = addCheckbox(
-			Platform::IsWayland()
+			false
 				? tr::lng_settings_qt_frame()
 				: tr::lng_settings_native_frame(),
 			Core::App().settings().nativeWindowFrame());
